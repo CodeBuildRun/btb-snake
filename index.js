@@ -8,6 +8,7 @@ const {
   genericErrorHandler,
   poweredByHandler
 } = require('./handlers.js')
+const behave = require('./behaviour')
 
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
@@ -43,11 +44,8 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
   var data = request.body;
 
-  // Choose a random direction to move in
-  possible_moves = ["up", "down", "left", "right"]
-  var choice = Math.floor(Math.random() * possible_moves.length);
-  var snake_move = possible_moves[choice];
-
+  // Determine where to move
+  snake_move = behave.move(data);
   console.log("MOVE: " + snake_move);
   return response.json({ move: snake_move })
 })
