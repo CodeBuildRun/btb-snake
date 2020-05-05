@@ -23,9 +23,12 @@ const move = (data) => {
 const create_board = (data) => {
     var board = new PF.Grid(data.board.height, data.board.width)
 
-    for (const part of data.you.body.values())
+    for (const snake of data.board.snakes.values())
     {
-        board.setWalkableAt(part.x, part.y, false);
+        for (const part of snake.body.values())
+        {
+            board.setWalkableAt(part.x, part.y, false);
+        }
     }
 
     return(board)
@@ -60,7 +63,7 @@ const chose_target = (data, board, finder) => {
         target_path = choose_fruit(data, board, finder);
     }
     else {
-        if (data.you.health < 50)
+        if (data.you.health < 70)
         {
             target_path = choose_fruit(data, board, finder);
             if (target_path.length == 0)
