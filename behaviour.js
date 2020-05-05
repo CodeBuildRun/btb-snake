@@ -11,8 +11,8 @@ const move = (data) => {
         heuristic: PF.Heuristic.manhattan
     });
 
-    console.log("=======");
-    console.log(data.turn);
+    //console.log("=======");
+    //console.log(data.turn);
     // Choose a point in the board
     var target_path = chose_target(data, board, finder)
     var head = data.you.body[0]
@@ -63,12 +63,11 @@ const chose_target = (data, board, finder) => {
         target_path = choose_fruit(data, board, finder);
     }
     else {
-        if (data.you.health < 70)
+        if (data.you.health < 50)
         {
             target_path = choose_fruit(data, board, finder);
             if (target_path.length == 0)
             {
-                console.log("NEIGH");
                 target_path = move_to_neighbour(head, data, board, finder);
             }
         }
