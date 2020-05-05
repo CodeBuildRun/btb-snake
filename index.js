@@ -43,7 +43,6 @@ app.post('/start', (request, response) => {
 // TODO: Use the information in cherrypy.request.json to decide your next move.
 app.post('/move', (request, response) => {
   var data = request.body;
-
   // Determine where to move
   snake_move = behave.move(data);
   console.log("MOVE: " + snake_move);
